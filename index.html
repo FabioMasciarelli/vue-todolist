@@ -15,35 +15,30 @@
 </head>
 
 <body>
-  <header>
-    <img id="logo" src="img/logo.png" alt="logo boolean" />
-    <span id="logo-text">Toboolist</span>
-  </header>
-  <main>
-    <div class="container">
-      <div class="top">
-        <input type="text" placeholder="es: Fare la spesa..." />
-        <button type="button" class="btn btn-filled">Add Task</button>
+  <div id="app">
+
+
+    <header>
+      <img id="logo" src="img/logo.png" alt="logo boolean" />
+      <span id="logo-text">Toboolist</span>
+    </header>
+    <main>
+      <div class="container">
+        <div class="top">
+          <input type="text" placeholder="es: Fare la spesa..." />
+          <button type="button" class="btn btn-filled">Add Task</button>
+        </div>
+        <div class="tasks">
+          <ul class="inner-list">
+            <li v-for="(item, index) in todo" :class="todo[index].done === true ? 'done' : ''" @click="invert(todo[index].done)">
+              <span class="circle checked"></span> {{ todo[index].text }}
+            </li>
+
+          </ul>
+        </div>
       </div>
-      <div class="tasks">
-        <ul class="inner-list">
-          <li class="done">
-            <span class="circle checked"></span>Recruiting blog post
-          </li>
-          <li class="done">
-            <span class="circle checked"></span>Mobile app luaunch
-          </li>
-          <li>
-            <span class="circle delete"></span>Interview John H.
-          </li>
-          <li class="done">
-            <span class="circle checked"></span>Summit update to mobile
-            storefronts
-          </li>
-        </ul>
-      </div>
-    </div>
-  </main>
+    </main>
+  </div>
 
   <script src="./js/script.js"></script>
 </body>
