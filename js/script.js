@@ -4,29 +4,50 @@ const { createApp } = Vue;
 const app = createApp({
     data() {
         return {
-            todo: [
+            newTask: {
+                text:"",
+                done: false
+            },
+
+            tasks: [
             {
                 text:"Recruiting blog post",
-                done: false,
+                done: false
             },
             {
                 text:"Mobile app launch",
-                done: false,
+                done: false
             },
             {
                 text:"Interview John H.",
-                done: false,
+                done: true
             },
             {
                 text:"Summit update to mobile storefronts",
-                done: false,
-            },
-        ],
+                done: true
+            }
+        ]
         }
     },
     methods: {
         invert(value) {
-            value === true ? value = false : value = true;
+            this.tasks[value].done === false ? this.tasks[value].done = true : this.tasks[value].done = false;
+            console.log(this.tasks[value].done);
+        },
+
+        deleteTasks(value) {
+            this.tasks.splice(value, 1);
+            console.log(value);
+        },
+
+        addTask() {
+            if(this.newTask.text !== "") {
+                const push = {...this.newTask}
+                console.log(push);
+                this.tasks.push(push);
+                this.newTask.text ="";
+            }
         }
+
     },
 }).mount("#app");

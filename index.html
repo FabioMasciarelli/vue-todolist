@@ -25,13 +25,17 @@
     <main>
       <div class="container">
         <div class="top">
-          <input type="text" placeholder="es: Fare la spesa..." />
-          <button type="button" class="btn btn-filled">Add Task</button>
+          <input type="text" placeholder="New task" v-model="newTask.text" @keyup.enter="addTask"/>
+          <button type="button" class="btn btn-filled" @click="addTask">Add Task</button>
         </div>
         <div class="tasks">
+          <h2 v-show="tasks.length === 0">
+            Non ci sono Tasks, aggiungine una.
+          </h2>
           <ul class="inner-list">
-            <li v-for="(item, index) in todo" :class="todo[index].done === true ? 'done' : ''" @click="invert(todo[index].done)">
-              <span class="circle checked"></span> {{ todo[index].text }}
+            <li v-for="(item, index) in tasks" @click="invert(index)">
+              <span class="circle" :class="tasks[index].done === false ? 'checked' : 'delete', tasks[index].done === true ? 'done' : ''">{{ tasks[index].text }}</span>
+              <button @click="deleteTasks(index)">X</button>
             </li>
 
           </ul>
